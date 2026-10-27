@@ -46,3 +46,12 @@ IP masking comes from encryption + routing, not UDP reliability.
 The real risk to "always masked" is silent tunnel failure causing
 traffic to leak outside the tunnel — to be addressed by a
 kill-switch mechanism (see threat model doc, Day 14).
+
+## Day 3: First working TUN device
+
+Created a TUN interface (meshvpn0) using pytun-pmd3, brought it up
+with a static IP (10.8.0.1), and confirmed the kernel hands packets
+to userspace: pinging the device produced "Got packet" output in
+the script, confirming the read() loop captures real kernel traffic.
+Ping itself showed 100% loss, as expected — the script only reads
+packets, it doesn't yet send replies.
