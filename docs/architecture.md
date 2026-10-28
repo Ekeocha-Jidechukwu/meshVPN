@@ -55,3 +55,12 @@ to userspace: pinging the device produced "Got packet" output in
 the script, confirming the read() loop captures real kernel traffic.
 Ping itself showed 100% loss, as expected — the script only reads
 packets, it doesn't yet send replies.
+## Day 4: Basic UDP tunnel
+
+Extended the TUN reader into a full point-to-point tunnel: packets
+read from TUN are forwarded over a UDP socket to a peer, and
+incoming UDP packets are written back into TUN. Two instances
+(different TUN addresses/ports) tested on one machine simulate two
+peers — ping between their TUN addresses succeeds end-to-end,
+confirming packets round-trip through both the local and peer TUN
+devices correctly.
