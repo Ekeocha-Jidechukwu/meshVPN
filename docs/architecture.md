@@ -64,3 +64,15 @@ incoming UDP packets are written back into TUN. Two instances
 peers — ping between their TUN addresses succeeds end-to-end,
 confirming packets round-trip through both the local and peer TUN
 devices correctly.
+
+## Day 5: IP addressing and routing
+
+Confirmed that bringing up the TUN device with an assigned address
+(10.8.0.1/24) automatically creates a kernel route for that subnet
+via meshvpn0 (`ip route show`). Verified routing decisions using
+`ip route get` — traffic to addresses in 10.8.0.0/24 resolves to
+meshvpn0, while traffic to any other address (e.g. 8.8.8.8) still
+resolves to the normal network interface. This confirms only
+tunnel-subnet traffic is actually diverted through MeshVPN at this
+stage — full-traffic redirection (making it a "real" IP mask for
+all traffic) is a later-stage design decision, not yet implemented.

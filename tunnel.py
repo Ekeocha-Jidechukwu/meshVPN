@@ -1,5 +1,6 @@
 import socket
 import threading
+import subprocess
 from pytun import TunTapDevice
 
 # --- Config (you'll change these per machine) ---
@@ -14,6 +15,9 @@ tun.addr = LOCAL_IP
 tun.netmask = '255.255.255.0'
 tun.mtu = 1400
 tun.up()
+
+print("Current routes for this interface:")
+subprocess.run(['ip', 'route', 'show', 'dev', tun.name])
 
 # --- Set up UDP socket ---
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

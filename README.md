@@ -8,6 +8,7 @@ peer-to-peer mesh routing.
 - [X] Day 2: TUN/TAP research
 - [x] Day 3: TUN interface created, packet read confirmed
 - [x] Day 4: Built a simple UDP tunnel and passed data between peers.
+- [x] Day 5: IP  addressing and routing
 
 ## Setup
 pip install -r requirements.txt
