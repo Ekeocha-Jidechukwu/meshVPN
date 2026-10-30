@@ -76,3 +76,14 @@ resolves to the normal network interface. This confirms only
 tunnel-subnet traffic is actually diverted through MeshVPN at this
 stage — full-traffic redirection (making it a "real" IP mask for
 all traffic) is a later-stage design decision, not yet implemented.
+
+## Day 6: Integration test infrastructure (network namespaces)
+
+Introduced `ip netns` to create isolated network environments for
+testing, instead of relying on manually run processes. Namespaces
+`peer1` and `peer2` simulate two separate machines on one host.
+Wrote the first integration test confirming namespace isolation
+(each has its own interfaces, no access to the host's). This is
+the foundation for Day 6-7's goal of automatically testing the
+full tunnel (TUN + UDP forwarding) between two namespaces rather
+than two manually run terminals.
