@@ -87,3 +87,14 @@ Wrote the first integration test confirming namespace isolation
 the foundation for Day 6-7's goal of automatically testing the
 full tunnel (TUN + UDP forwarding) between two namespaces rather
 than two manually run terminals.
+
+## Day 7: Week round up
+```mermaid
+flowchart LR
+    A[App on Peer 1] --> B[Kernel routes to TUN]
+    B --> C[tunnel.py reads TUN]
+    C --> D[UDP socket sends]
+    D --> E[UDP socket receives on Peer 2]
+    E --> F[tunnel.py writes to TUN]
+    F --> G[Kernel delivers to app on Peer 2]
+```
